@@ -97,7 +97,47 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        self.set_light_on()
+        self._item = self._list[self._position]
+        # print(self._item)
+        # print(f'105 : list is {self._list}')
+
+        # print(f'107: position {self._position}')
+        # print(f'108: item in hand {self._item}')
+
+        while(self._light == 'ON'):
+            self.set_light_off()
+            # print(f'\ninside 114: light is {self._light}')
+
+            while(self.move_right()):
+                # print(f'\n\n115: position {self._position}')
+                # print(f'116: item in position {self._list[self._position]}')
+
+                if(self.compare_item() == 1):
+                    # print(f'122: position {self._position}')
+                    # print(f'compared item {self._item}')
+                    self.swap_item()
+                    self.set_light_on()
+                    # print(f'list after right swap {self._list}')
+                    self.move_left()
+
+                    if(self.compare_item() == -1):
+                        self.swap_item()
+                        self.set_light_on()
+                        # print(f'list after left swap {self._list}')
+
+                    # print(f'125: position {self._position}')
+                    # print(f'item in hand {self._item}')
+
+                # print(f'134: end of while: light is {self._light}')
+                self._item = self._list[self._position]
+
+            self._position = 0
+            self._item = self._list[self._position]
+
+        # print(self._list)
+
+        return self._list
 
 
 if __name__ == "__main__":
